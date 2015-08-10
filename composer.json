@@ -1,5 +1,5 @@
 {
-  "name": "CascadeEnergy/php-loop-control",
+  "name": "cascade-energy/php-loop-control",
   "description": "Loop controller classes designed to assist in testing long-running processes",
   "minimum-stability": "stable",
   "license": "MIT",
