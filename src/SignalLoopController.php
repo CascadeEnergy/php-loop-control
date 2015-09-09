@@ -2,7 +2,7 @@
 
 namespace CascadeEnergy\LoopControl;
 
-class InterruptableLoopController implements LoopControllerInterface
+class SignalLoopController implements LoopControllerInterface
 {
     private $isRunning = true;
     private $isHandlerInstalled = false;
