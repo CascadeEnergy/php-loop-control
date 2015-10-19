@@ -16,6 +16,7 @@ class SignalLoopController implements LoopControllerInterface
     {
         if (!$this->isHandlerInstalled) {
             pcntl_signal(SIGTERM, [$this, 'handler']);
+            pcntl_signal(SIGINT, [$this, 'handler']);
             $this->isHandlerInstalled = true;
         }
 
@@ -24,7 +25,7 @@ class SignalLoopController implements LoopControllerInterface
 
     public function handler($signal)
     {
-        if ($signal === SIGTERM) {
+        if ($signal === SIGTERM || $signal === SIGINT) {
             $this->isRunning = false;
         }
     }
