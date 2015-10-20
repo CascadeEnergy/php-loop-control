@@ -1,6 +1,4 @@
 <?php
-// For signal handlers
-declare(ticks = 1);
 
 namespace CascadeEnergy\LoopControl;
 
@@ -19,6 +17,8 @@ class SignalLoopController implements LoopControllerInterface
             pcntl_signal(SIGINT, [$this, 'handler']);
             $this->isHandlerInstalled = true;
         }
+
+        pcntl_signal_dispatch();
 
         return $this->isRunning;
     }
