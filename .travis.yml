@@ -1,6 +1,4 @@
 language: php
-before_script:
-  - pecl install pcntl
 install:
   - composer install
 php:

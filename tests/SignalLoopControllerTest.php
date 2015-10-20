@@ -12,6 +12,10 @@ class SignalLoopControllerTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->loopController = new SignalLoopController();
+
+        if (!$this->isTestPossible()) {
+            return;
+        }
     }
 
     public function testItShouldContinueTheLoopIndefinitelyByDefault()
@@ -39,5 +43,20 @@ class SignalLoopControllerTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($this->loopController->shouldContinue());
         posix_kill(posix_getpid(), SIGTERM);
         $this->assertFalse($this->loopController->shouldContinue());
+    }
+
+    private function isTestPossible()
+    {
+        if (!function_exists('pcntl_signal')) {
+            $this->markTestSkipped('The pcntl_signal function is not available.');
+            return false;
+        }
+
+        if (!function_exists('posix_kill')) {
+            $this->markTestSkipped('The posix_kill function is not available.');
+            return false;
+        }
+
+        return true;
     }
 }
